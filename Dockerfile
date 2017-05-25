@@ -1,12 +1,12 @@
-FROM alpine:3.3
+FROM aarch64/alpine
 
-MAINTAINER Yves Blusseau <90z7oey02@sneakemail.com> (@blusseau)
+MAINTAINER Aleksandr Smirnov alex@sander.ee
 
 ENV DEBUG=false              \
 	DOCKER_GEN_VERSION=0.7.3 \
 	DOCKER_HOST=unix:///var/run/docker.sock
 
-RUN apk --update add bash curl ca-certificates procps jq tar && \
+RUN apk --update add bash curl openssl ca-certificates procps jq tar && \
 	curl -L -O https://github.com/jwilder/docker-gen/releases/download/$DOCKER_GEN_VERSION/docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz && \
 	tar -C /usr/local/bin -xvzf docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz && \
 	rm -f docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz && \
